@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node JS</title>
+    <link rel="shortcut icon" href="https://princu09.github.io/nfwebbuilder/img/logo.png" type="image/png">
+
+    <!-- Custome Stylesheet Include Here -->
+    <link rel="stylesheet" href="MainSource/style.css">
+
+    <!-- PrismJS Stylesheet Include Here -->
+    <link rel="stylesheet" href="MainSource/css/prism.css">
+
+    <!-- PrismJS Script Include Here -->
+    <script src="MainSource/js/prism.js"></script>
+
+    <!-- Main Script Include Here -->
+    <script src="MainSource/js/main.js"></script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .fixedMenu {
+            position: fixed;
+            left: 0;
+            margin: 0.5rem;
+            scroll-behavior: smooth;
+            overflow-y: visible;
+        }
+
+        .fixedBtn {
+            visibility: hidden;
+        }
+
+        .colorBtn {
+            background-color: orangered;
+            border-radius: 3px;
+            border: none;
+            outline: none;
+            color: white;
+            margin: 0.5rem;
+            font-weight: 600;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+    </style>
+
+
+    <!-- Bootstrap CDN Include Here -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+
+
+</head>
+
+<body>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="fixedMenu" id="navbarToggleExternalContent">
+                <ul class="container my-3 list-group">
+                    <li class="list-group-item"><a href="#mongoConnection">Mongoose Connection to MongoDB</a></li>
+                    <li class="list-group-item"><a href="#MongooseCreateSchema">Mongoose Create Schema </a></li>
+                    <li class="list-group-item"><a href="#CreateCollection">Create Collection</a></li>
+                    <li class="list-group-item"><a href="#CreateDocumentorInsert">Create Document or Insert</a></li>
+                </ul>
+            </div>
+            <button class="fixedBtn colorBtn" id="fixedBtn" type="button" data-toggle="collapse"
+                data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                Contents
+            </button>
+        </div>
+        <div class="col-md-9">
+            <div class="my-4 d-flex flex-column justify-content-center align-items-center">
+                <img src="MainSource/nodeLogo.png" width="150rem" alt="">
+                <p class="mt-3 h6 text-center" style="font-weight: 600;">Get Code Easily By NFG</p>
+            </div>
+
+            <div id="mongoConnection" class="card container mt-3">
+                <div class="card-header bg-transparent font-weight-bold">
+                    Mongoose Connection to MongoDB
+                </div>
+                <div class="">
+                    <pre class="language-javascript">
+<code>const mongoose = require('mongoose');
+
+// Connection Creation
+mongoose.connect("mongodb://localhost:27017/nfg", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}).then(() => console.log("Connection Successfull...")).catch((err) => console.log(err));
+            </code></pre>
+                </div>
+            </div>
+
+            <div id="MongooseCreateSchema" class="card container mt-3">
+                <div class="card-header bg-transparent font-weight-bold">
+                    Mongoose Create Schema
+                </div>
+                <div class="">
+                    <pre class="language-javascript">
+<code>// Create a Schema
+const clientListSchema = new mongoose.Schema({
+    name : {
+        type : String,
+        required : true
+    },
+    age : Number,
+    city : String,
+    date : {
+        type : Date,
+        default : Date.now,
+    },
+    author : String,
+    active : Boolean,
+})</code></pre>
+                </div>
+            </div>
+
+            <div id="CreateCollection" class="card container mt-3">
+                <div class="card-header bg-transparent font-weight-bold">
+                    Create Collection
+                </div>
+                <div class="">
+                    <pre class="language-javascript">
+<code>// Collection Create
+const Client = new mongoose.model("PlayList" , clientListSchema);</code></pre>
+                </div>
+            </div>
+
+
+            <div id="CreateDocumentorInsert" class="card container mt-3">
+                <div class="card-header bg-transparent font-weight-bold">
+                    Create Document or Insert
+                </div>
+                <div class="">
+                    <pre class="language-javascript">
+<code>// Create Document or Insert
+const createDocument = async () => {
+    try {
+        const clientList = new Client({
+            name: "Prince Patel",
+            age: 19,
+            city: "Ahmedabad",
+            author: "NFG",
+            active: true,
+        });
+
+        const result = await clientList.save();
+        console.log(result);
+
+    } catch (e) {
+        console.log(e);
+    }
+}
+createDocument();</code></pre>
+                </div>
+            </div>
+
+            <footer>
+                <p class="text-center" style="font-weight: 600; color:#333; font-size: 0.9rem;">
+                    <script type="text/javascript">
+                        document.write(new Date().getFullYear());
+                    </script> &copy; Created By NF Web Developer
+                </p>
+            </footer>
+        </div>
+    </div>
+
+
+    <script>
+        if ($(window).width() < 767) {
+            $("#navbarToggleExternalContent").addClass("collapse");
+            $("#fixedBtn").removeClass("fixedBtn");
+            $("#navbarToggleExternalContent").removeClass("fixedMenu");
+        }
+    </script>
+
+</body>
+
+</html>
