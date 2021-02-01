@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const chalk = require('chalk');
 
 // Connection Creation
 mongoose.connect("mongodb://localhost:27017/nfg", {
@@ -36,11 +37,18 @@ const createDocument = async () => {
             active: true,
         });
 
-        const result = await clientList.save();
-        console.log(result);
+        const result = await clientList //.save();
+        console.log(chalk.green(result));
 
     } catch (e) {
-        console.log(e);
+        console.log(chalk.green(e));
     }
 }
-createDocument();
+// createDocument();
+
+// Get Document
+const getDocument = async () => {
+    const result = await Client.find();
+    console.log(chalk.green(result));
+}
+getDocument();
